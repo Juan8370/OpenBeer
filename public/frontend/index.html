@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1024, height=768, initial-scale=1.0">
+  <title>Open BEER - Dispensador</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Patrón animado de burbujas -->
+  <div class="bubbles">
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+  </div>
+  
+  <!-- Página de inicio (Home) -->
+  <div class="container home-page">
+    <div class="header fade-in">
+      <h1 id="page-title">OPEN BEER</h1>
+      <p>Sistema de dispensación premium</p>
+    </div>
+    
+    <div class="card fade-in">
+      <div class="card-header">
+        <h2 class="card-title">CÓDIGO QR</h2>
+        <p class="card-subtitle">Escanea para servir</p>
+      </div>
+      
+      <div class="card-body">
+        <div class="beer-info">
+          <h3 class="beer-name" id="beer-name">Cargando...</h3>
+          <p class="beer-description" id="beer-description">Cargando descripción...</p>
+        </div>
+        
+        <div class="qr-container">
+          <img id="qr-code" src="" alt="Código QR para servir cerveza" class="qr-code">
+        </div>
+      </div>
+      
+      <div class="card-footer">
+        <p class="instructions">Presente este código en el dispensador para servir su cerveza</p>
+      </div>
+    </div>
+    
+    <div class="error-container" id="errorMessage">
+      <!-- Los mensajes de error se mostrarán aquí -->
+    </div>
+  </div>
+  
+  <!-- Página de servicio (Service) - SIMPLIFICADA -->
+  <div class="service-page" id="service-page">
+    <div class="service-container">
+      <div class="service-header">
+        <h2>¡SIRVIENDO CERVEZA!</h2>
+        <p class="service-subtitle">El proceso está en marcha</p>
+      </div>
+      
+      <!-- Single card principal (como las otras pantallas) -->
+      <div class="service-card">
+        <div class="card-top">
+          <h3>PROCESO DE SERVIDO</h3>
+        </div>
+        <div class="card-body">
+          <div class="pouring-container">
+            <!-- SVG de cerveza desde archivo externo -->
+            <img src="../assets/beer.svg" alt="Sirviendo cerveza" class="pouring-icon">
+          </div>
+          
+          <div class="measurements">
+            <div class="measurement">
+              <div class="measurement-value" id="service-qty">0 ml</div>
+              <div class="measurement-label">Cantidad servida</div>
+            </div>
+            
+            <div class="measurement">
+              <div class="measurement-value" id="service-price">$0</div>
+              <div class="measurement-label">Costo actual</div>
+            </div>
+          </div>
+          
+          <div class="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+          </div>
+          
+          <div class="status-message">
+            <p>Su cerveza se está sirviendo. ¡Disfrútela!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Página final (Final) -->
+  <div class="final-page" id="final-page">
+    <div class="final-header">
+      <h2>¡COMPRA EXITOSA!</h2>
+      <p>DISFRUTE SU CERVEZA</p>
+    </div>
+    
+    <div class="final-content">
+      <div class="success-message">
+        <div class="success-icon">✓</div>
+        <h3>¡Transacción completada con éxito!</h3>
+      </div>
+      
+      <div class="summary">
+        <div class="summary-row">
+          <span class="label">Cantidad servida:</span>
+          <span class="value" id="final-qty">0 ml</span>
+        </div>
+        <div class="summary-row">
+          <span class="label">Valor total:</span>
+          <span class="value" id="final-value">$0</span>
+        </div>
+        <div class="summary-row summary-total">
+          <span class="label">Saldo restante:</span>
+          <span class="value" id="final-balance">$0</span>
+        </div>
+      </div>
+      
+      <div class="final-message">
+        <p>¡Gracias por su compra! Esperamos que disfrute su cerveza.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

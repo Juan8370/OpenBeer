@@ -1,0 +1,7 @@
+{
+  "title": "open Beer",
+  "beerName": "Campesina",
+  "description": "El delicioso y clasico sabor del campo colombiano ",
+  "video": "../assets/disp.mp4",
+  "qrData": "https://openbeer.io/"
+}
