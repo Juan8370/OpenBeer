@@ -9,14 +9,16 @@ import cors from 'cors';
 
 /* ---------- MQTT: solo recepción de payload en bruto ---------- */
 import { startRawMQTT } from './src/mqtt/mqttclient.js';            // ← tu cliente “ligero”
-const { bus } = startRawMQTT('./config/config.json');        // lee cfg y emite {topic,payload}
+const { bus } = startRawMQTT('./OpenBeer/config/config.json');        // lee cfg y emite {topic,payload}
+
 
 let config = {};
 
 try {
   //const rawData = fs.readFileSync("usr/local/device/OpenBeer/config.json", "utf-8"); // Ruta para mantener la configuración fuera del proyecto
-  const rawData = fs.readFileSync("./config/config.json", "utf-8");
+  const rawData = fs.readFileSync("./OpenBeer/config/config.json", "utf-8");
   config = JSON.parse(rawData);
+  console.log(config.mqtt, config.topics);
   console.log("✅ Configuración cargada correctamente.");
 } catch (error) {
   console.error("❌ Error cargando config.json:", error.message);

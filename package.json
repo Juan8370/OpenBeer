@@ -1,11 +1,12 @@
 {
-  "name": "OpenBeer_disp_front",
+  "name": "OpenBeer",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node --watch index.js"
+    "start": "node --watch index.js",
+    "electron": "electron ."
   },
   "keywords": [],
   "author": "",
@@ -16,5 +17,8 @@
     "express": "^5.1.0",
     "mqtt": "^5.13.2",
     "qrcode": "^1.5.4"
+  },
+  "devDependencies": {
+    "electron": "^38.0.0"
   }
 }

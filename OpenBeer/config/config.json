@@ -10,8 +10,8 @@
   "topics": ["device/dispenser/pi20003"],
   "front":{
     "title": "open Beer",
-    "beerName": "Campesina",
-    "description": "El delicioso y clasico sabor del campo colombiano ",
+    "beerName": "Original",
+    "description": "El clasico de los clásicos. Cerveza rubia, ligera y refrescante.",
     "video": "../assets/disp.mp4",
     "qrData": "https://openbeer.io/"
 }

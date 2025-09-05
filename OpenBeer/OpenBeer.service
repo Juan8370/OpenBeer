@@ -1,0 +1,17 @@
+[Unit]
+Description=OpenBeer Electron + Express App
+After=graphical.target
+
+[Service]
+Type=simple
+User=infomedia
+Environment=NODE_ENV=production
+Environment=PORT=5500
+Environment=DISPLAY=:0
+Environment=XAUTHORITY=/home/infomedia/.Xauthority
+WorkingDirectory=/usr/local/device/nodejs/OpenBeer
+ExecStart=/usr/local/device/services/OpenBeer/OpenBeer.sh
+Restart=always
+
+[Install]
+WantedBy=graphical.target

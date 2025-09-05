@@ -33,26 +33,18 @@ function changePage(page) {
     "3": finalPage
   };
 
-  // 🔑 Ocultar todas las páginas
-  Object.values(pages).forEach(p => {
-    p.classList.remove("active");
-    p.style.display = "none";
-  });
+  // Ocultar todas las páginas
+  Object.values(pages).forEach(p => p.classList.remove("active"));
 
-  // 🔑 Mostrar solo la que corresponde
+  // Mostrar la que corresponde
   const next = pages[page] || homePage;
-  next.style.display = "flex";
   requestAnimationFrame(() => {
     next.classList.add("active");
   });
 
-  // actualizar estado
   currentPage = page;
-
-  // reiniciar scroll
   window.scrollTo(0, 0);
 
-  // 🔑 actualizar contenidos dinámicos si aplica
   if (page === "2") updateServicePage();
   if (page === "3") updateFinalPage();
 }
