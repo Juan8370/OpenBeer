@@ -7,8 +7,8 @@ import fs from "node:fs";
 
 import cors from 'cors';
 
-const rutaJsonLocal = "./OpenBeer/config/config.json";
-const rutaJsonExterna = "/usr/local/device/services/OpenBeer/config/config.json";
+const rutaJsonLocal = "./dispenser.front/config/config.json";
+const rutaJsonExterna = "/usr/local/device/services/dispenser.front/config/config.json";
 
 /* ---------- MQTT: solo recepción de payload en bruto ---------- */
 import { startRawMQTT } from './src/mqtt/mqttclient.js';            // ← tu cliente “ligero”

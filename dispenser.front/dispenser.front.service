@@ -1,5 +1,5 @@
 [Unit]
-Description=OpenBeer Electron + Express App
+Description=Dispenser.front Electron + Express App
 After=graphical.target
 
 [Service]
@@ -9,8 +9,8 @@ Environment=NODE_ENV=production
 Environment=PORT=5500
 Environment=DISPLAY=:0
 Environment=XAUTHORITY=/home/infomedia/.Xauthority
-WorkingDirectory=/usr/local/device/nodejs/OpenBeer
-ExecStart=/usr/local/device/services/OpenBeer/OpenBeer.sh
+WorkingDirectory=/usr/local/device/nodejs/dispenser.front
+ExecStart=/usr/local/device/services/dispenser.front/aplication.sh
 Restart=always
 
 [Install]
