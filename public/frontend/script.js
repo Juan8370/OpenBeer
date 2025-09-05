@@ -26,35 +26,39 @@ function showError(message) {
   }, 5000);
 }
 
-// Función para cambiar de página
 function changePage(page) {
-  // Ocultar todas las páginas
-  homePage.style.display = 'none';
-  servicePage.style.display = 'none';
-  finalPage.style.display = 'none';
-  
-  // Mostrar la página correspondiente
-  switch(page) {
-    case '1':
-      homePage.style.display = 'flex';
-      break;
-    case '2':
-      servicePage.style.display = 'block';
-      updateServicePage();
-      break;
-    case '3':
-      finalPage.style.display = 'block';
-      updateFinalPage();
-      break;
-    default:
-      homePage.style.display = 'flex';
-  }
-  
+  const pages = {
+    "1": homePage,
+    "2": servicePage,
+    "3": finalPage
+  };
+
+  // 🔑 Ocultar todas las páginas
+  Object.values(pages).forEach(p => {
+    p.classList.remove("active");
+    p.style.display = "none";
+  });
+
+  // 🔑 Mostrar solo la que corresponde
+  const next = pages[page] || homePage;
+  next.style.display = "flex";
+  requestAnimationFrame(() => {
+    next.classList.add("active");
+  });
+
+  // actualizar estado
   currentPage = page;
-  
-  // Ajustar el scroll para ver el contenido correctamente
+
+  // reiniciar scroll
   window.scrollTo(0, 0);
+
+  // 🔑 actualizar contenidos dinámicos si aplica
+  if (page === "2") updateServicePage();
+  if (page === "3") updateFinalPage();
 }
+
+
+
 
 // Actualizar página de servicio
 // Actualizar página de servicio
@@ -99,24 +103,30 @@ function updateFinalPage() {
   document.getElementById('final-balance').textContent = `${transactionData.saldoRestante.toLocaleString('es-CO')} $`;
 }
 
-// Cargar configuración desde home.json
+// Cargar configuración desde el servidor
 async function loadConfig() {
   try {
-    const response = await fetch('/config/home.json');
+    const response = await fetch("http://127.0.0.1:5500/config", {
+      cache: "no-store",
+      headers: { "Content-Type": "application/json" }
+    });
+
     if (!response.ok) {
       throw new Error(`Error HTTP: ${response.status}`);
     }
+
     configData = await response.json();
-    
+
     // Actualizar la UI con los datos de configuración
-    document.getElementById('page-title').textContent = configData.title;
-    document.getElementById('beer-name').textContent = configData.beerName;
-    document.getElementById('beer-description').textContent = configData.description;
-    document.getElementById('qr-code').src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(configData.qrData)}`;
-    
+    document.getElementById("page-title").textContent = configData.title;
+    document.getElementById("beer-name").textContent = configData.beerName;
+    document.getElementById("beer-description").textContent = configData.description;
+    document.getElementById("qr-code").src =
+      `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(configData.qrData)}`;
+
   } catch (error) {
-    console.error('Error al cargar configuración:', error);
-    showError('Error al cargar la configuración: ' + error.message);
+    console.error("Error al cargar configuración:", error);
+    showError("Error al cargar la configuración: " + error.message);
   }
 }
 

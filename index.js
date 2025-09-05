@@ -3,12 +3,26 @@ import express          from 'express';
 import { createServer } from 'http';
 import path             from 'node:path';
 import QRCode           from 'qrcode';
+import fs from "node:fs";
 
 import cors from 'cors';
 
 /* ---------- MQTT: solo recepción de payload en bruto ---------- */
 import { startRawMQTT } from './src/mqtt/mqttclient.js';            // ← tu cliente “ligero”
-const { bus } = startRawMQTT('./src/mqtt/mqttConfig.json');        // lee cfg y emite {topic,payload}
+const { bus } = startRawMQTT('./config/config.json');        // lee cfg y emite {topic,payload}
+
+let config = {};
+
+try {
+  //const rawData = fs.readFileSync("usr/local/device/OpenBeer/config.json", "utf-8"); // Ruta para mantener la configuración fuera del proyecto
+  const rawData = fs.readFileSync("./config/config.json", "utf-8");
+  config = JSON.parse(rawData);
+  console.log("✅ Configuración cargada correctamente.");
+} catch (error) {
+  console.error("❌ Error cargando config.json:", error.message);
+  // Evita que arranque sin configuración válida
+  process.exit(1);
+}
 
 /* ---------- estado de la aplicación ---------- */
 const state = {
@@ -57,7 +71,7 @@ bus.on('msg', ({ topic, payload }) => {
     finalTimer = setTimeout(() => {
       state.page = '1';                // volver a HOME
       console.log('⏱️  Regreso automático a HOME (30 s)');
-    }, 30_000);
+    }, 10_000);
   }
 
   console.log('[MQTT]', topic, payload, '→ page', state.page);
@@ -90,6 +104,14 @@ app.get('/qr', async (req, res) => {
 
 /* ---------- ENDPOINTS REST para el frontend ---------- */
 app.get('/api/page', (_q, r) => r.json({ page: state.page }));
+
+/* ---------- ENDPOINT CONFIG FRONT ---------- */
+app.get('/config', (_req, res) => {
+  if (!config.front) {
+    return res.status(500).json({ error: "No se encontró configuración de 'front'" });
+  }
+  res.json(config.front);
+});
 
 app.get('/api/transaction', (_q, r) => r.json({
   id:            state.id,

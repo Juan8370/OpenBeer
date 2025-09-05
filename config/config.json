@@ -1,0 +1,18 @@
+{
+  "mqtt": {
+    "host": "mqtt://iot.infomediaservice.com",
+    "port": 1883,
+    "username": "infomedia",
+    "password": "",
+    "keepalive": 30,
+    "reconnect": 1000
+  },
+  "topics": ["device/dispenser/pi20003"],
+  "front":{
+    "title": "open Beer",
+    "beerName": "Campesina",
+    "description": "El delicioso y clasico sabor del campo colombiano ",
+    "video": "../assets/disp.mp4",
+    "qrData": "https://openbeer.io/"
+}
+}

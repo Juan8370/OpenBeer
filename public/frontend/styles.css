@@ -1,4 +1,6 @@
-/* Variables CSS */
+/* =========================
+   BASE
+   ========================= */
 :root {
   --orange-100: #FBC6B3;
   --orange-200: #EE7D54;
@@ -15,50 +17,49 @@
   --error: #C11111;
   --success: #007C5B;
   --info: #2D78AE;
+
   --font-family-base: 'Clash Grotesk', sans-serif;
   --font-weight-regular: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
+
   --border-radius: 16px;
   --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
-/* Reset y estilos base */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: var(--font-family-base);
 }
 
 html, body {
-  width: 1024px;
-  height: 768px;
-  overflow: hidden;
-  position: fixed;
+  width: 100%;
+  height: 100%;
 }
 
 body {
-  font-family: var(--font-family-base);
-  background: 
-    linear-gradient(135deg, var(--orange-400) 0%, var(--orange-600) 100%);
+  background: linear-gradient(135deg, var(--orange-400) 0%, var(--orange-600) 100%);
   color: var(--neutral-100);
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 1vh 0;
 }
 
-/* Patrón animado de burbujas de cerveza */
+/* =========================
+   BURBUJAS
+   ========================= */
 .bubbles {
-  position: absolute;
-  width: 100%;
-  height: 100%;
+  position: fixed;
+  inset: 0;
   z-index: -1;
   overflow: hidden;
 }
-
 .bubble {
   position: absolute;
   bottom: -100px;
@@ -66,552 +67,255 @@ body {
   border-radius: 50%;
   animation: rise 15s infinite ease-in;
 }
-
-.bubble:nth-child(1) {
-  width: 40px;
-  height: 40px;
-  left: 10%;
-  animation-duration: 12s;
-}
-
-.bubble:nth-child(2) {
-  width: 20px;
-  height: 20px;
-  left: 20%;
-  animation-duration: 15s;
-  animation-delay: 1s;
-}
-
-.bubble:nth-child(3) {
-  width: 50px;
-  height: 50px;
-  left: 35%;
-  animation-duration: 18s;
-  animation-delay: 2s;
-}
-
-.bubble:nth-child(4) {
-  width: 30px;
-  height: 30px;
-  left: 50%;
-  animation-duration: 13s;
-  animation-delay: 0.5s;
-}
-
-.bubble:nth-child(5) {
-  width: 25px;
-  height: 25px;
-  left: 65%;
-  animation-duration: 16s;
-  animation-delay: 3s;
-}
-
-.bubble:nth-child(6) {
-  width: 45px;
-  height: 45px;
-  left: 80%;
-  animation-duration: 14s;
-  animation-delay: 1.5s;
-}
-
-.bubble:nth-child(7) {
-  width: 35px;
-  height: 35px;
-  left: 90%;
-  animation-duration: 17s;
-  animation-delay: 2.5s;
-}
-
-/* Añade estos estilos a tu CSS existente para las burbujas adicionales */
-.bubble:nth-child(8) {
-  width: 15px;
-  height: 15px;
-  left: 15%;
-  animation-duration: 14s;
-  animation-delay: 4s;
-}
-
-.bubble:nth-child(9) {
-  width: 35px;
-  height: 35px;
-  left: 25%;
-  animation-duration: 16s;
-  animation-delay: 5s;
-}
-
-.bubble:nth-child(10) {
-  width: 25px;
-  height: 25px;
-  left: 40%;
-  animation-duration: 13s;
-  animation-delay: 3.5s;
-}
-
-.bubble:nth-child(11) {
-  width: 45px;
-  height: 45px;
-  left: 55%;
-  animation-duration: 17s;
-  animation-delay: 6s;
-}
-
-.bubble:nth-child(12) {
-  width: 20px;
-  height: 20px;
-  left: 70%;
-  animation-duration: 12s;
-  animation-delay: 2.5s;
-}
-
-.bubble:nth-child(13) {
-  width: 30px;
-  height: 30px;
-  left: 85%;
-  animation-duration: 15s;
-  animation-delay: 4.5s;
-}
-
-.bubble:nth-child(14) {
-  width: 40px;
-  height: 40px;
-  left: 5%;
-  animation-duration: 18s;
-  animation-delay: 7s;
-}
-
-.bubble:nth-child(15) {
-  width: 20px;
-  height: 20px;
-  left: 95%;
-  animation-duration: 11s;
-  animation-delay: 1.5s;
-}
-
 @keyframes rise {
-  0% {
-    bottom: -100px;
-    transform: translateX(0) scale(0.8);
-    opacity: 0;
-  }
-  50% {
-    transform: translateX(20px) scale(1.2);
-    opacity: 0.6;
-  }
-  100% {
-    bottom: 768px;
-    transform: translateX(-20px) scale(0.8);
-    opacity: 0;
-  }
+  0%   { bottom: -100px; transform: translateX(0) scale(0.8); opacity: 0; }
+  50%  { transform: translateX(20px) scale(1.2); opacity: 0.6; }
+  100% { bottom: 100%; transform: translateX(-20px) scale(0.8); opacity: 0; }
 }
 
-/* Contenedor principal */
-.container {
+/* =========================
+   CONTENEDORES Y ENCABEZADOS
+   ========================= */
+.container,
+.service-page,
+.final-page {
   width: 100%;
-  height: 100%;
+  max-width: 1200px;
+  min-height: 90vh;
+  padding: 5vw 4vw;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 20px;
-  padding: 20px;
+  gap: 2vh;
 }
 
-/* Encabezado */
-.header {
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-.header h1 {
-  font-size: 2.5rem;
+.header, .service-header, .final-header { text-align: center; }
+.header h1, .service-header h2, .final-header h2 {
+  font-size: clamp(1.8rem, 5vw, 3rem);
   font-weight: var(--font-weight-bold);
   text-transform: uppercase;
-  letter-spacing: 1.5px;
-  margin-bottom: 5px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  margin-bottom: 0.5rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
-
-.header p {
-  font-size: 1.1rem;
-  font-weight: var(--font-weight-medium);
+.header p, .service-subtitle, .final-header p {
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
   opacity: 0.9;
 }
 
-/* Tarjeta QR */
-.card {
-  width: 380px;
+/* =========================
+   CARD BASE
+   ========================= */
+.card,
+.service-card,
+.final-content {
+  width: 100%;
+  max-width: 420px;
+  min-height: 400px;
   background: var(--neutral-100);
   border-radius: var(--border-radius);
-  overflow: hidden;
   box-shadow: var(--box-shadow);
   color: var(--neutral-600);
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  overflow: hidden;
 }
 
-.card-header {
+.card-header,
+.service-card .card-top,
+.card-footer {
+  flex: 0 0 auto;
+  text-align: center;
+  font-weight: var(--font-weight-bold);
+}
+.card-header, .service-card .card-top {
   background: var(--orange-600);
   color: var(--neutral-100);
-  padding: 15px;
-  text-align: center;
-  position: relative;
+  padding: 1rem;
 }
-
-.card-header::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80%;
-  height: 2px;
-  background: var(--orange-200);
-}
-
-.card-title {
-  font-size: 1.6rem;
-  font-weight: var(--font-weight-bold);
-  margin-bottom: 5px;
-  text-transform: uppercase;
-}
-
-.card-subtitle {
-  font-size: 1rem;
+.card-footer {
+  background: var(--orange-100);
+  border-top: 1px solid var(--orange-200);
   font-weight: var(--font-weight-medium);
-  opacity: 0.9;
+  color: var(--orange-600);
+  font-size: clamp(0.8rem, 2vw, 1rem);
 }
+
+.card-title { font-size: clamp(1.2rem, 4vw, 1.8rem); margin-bottom: 0.3rem; }
 
 .card-body {
-  padding: 20px;
+  flex: 1 1 auto;
+  padding: 1.2rem;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  gap: 15px;
+  gap: 1rem;
 }
 
-.beer-info {
-  text-align: center;
-  margin-bottom: 10px;
+/* QR ocupa máximo 50% de la tarjeta */
+.qr-container {
+  flex: 0 0 auto;
+  max-height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  padding: 0.8rem;
+  border-radius: 10px;
+  border: 1px solid var(--neutral-300);
+}
+.qr-code {
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  aspect-ratio: 1 / 1;
+  border-radius: 8px;
+  display: block;
 }
 
 .beer-name {
-  font-size: 1.3rem;
+  font-size: 2rem;
   font-weight: var(--font-weight-semibold);
-  color: var(--orange-600);
-  margin-bottom: 5px;
+  color: var(--orange-500);
+  text-align: center;
+  margin: 12px 0;
 }
-
 .beer-description {
-  font-size: 0.9rem;
+  font-size: 1rem;
+  font-weight: var(--font-weight-regular);
   color: var(--neutral-500);
-  line-height: 1.4;
-}
-
-.qr-container {
-  background: white;
-  padding: 12px;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-  border: 1px solid var(--neutral-300);
-}
-
-.qr-code {
-  width: 180px;
-  height: 180px;
-  display: block;
-  border-radius: 8px;
-}
-
-.card-footer {
-  background: var(--orange-100);
-  padding: 12px 15px;
   text-align: center;
-  border-top: 1px solid var(--orange-200);
+  padding: 0 1rem;
+  margin-bottom: 1rem;
 }
+.instructions { display: none; }
+.card-body-service { padding: 1.2rem; }
 
-.instructions {
-  font-size: 0.9rem;
-  color: var(--orange-600);
-  font-weight: var(--font-weight-medium);
-}
-
-/* Mensajes de error */
-.error-container {
-  display: none;
-  background: var(--error);
-  color: white;
-  padding: 12px;
-  border-radius: 8px;
-  text-align: center;
-  width: 380px;
-}
-
-/* Página de servicio (Service) - OPTIMIZADA PARA 1024x768 */
-/* ... (mantener todas las variables y estilos anteriores) ... */
-
-/* Página de servicio (Service) - SIMPLIFICADA Y COHERENTE */
-.service-page {
-  display: none;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 10;
-}
-
+/* =========================
+   SERVICE PAGE EXTRA
+   ========================= */
 .service-container {
   display: flex;
   flex-direction: column;
-  height: 100%;
-  width: 100%;
   align-items: center;
-  justify-content: center;
-  gap: 20px;
-}
-
-.service-header {
-  background: var(--orange-600);
-  color: var(--neutral-100);
-  padding: 15px 30px;
-  text-align: center;
-  border-radius: var(--border-radius);
+  gap: 2vh;
   width: 100%;
-  max-width: 500px;
-  box-shadow: var(--box-shadow);
 }
-
-.service-header h2 {
-  font-size: 2.2rem;
-  font-weight: var(--font-weight-bold);
-  margin-bottom: 5px;
-  text-transform: uppercase;
-}
-
-.service-subtitle {
-  font-size: 1.2rem;
-  font-weight: var(--font-weight-medium);
-  opacity: 0.9;
-}
-
-/* Card principal de servicio - Estilo coherente con las demás pantallas */
-.service-card {
-  background: var(--neutral-100);
-  border-radius: var(--border-radius);
-  overflow: hidden;
-  box-shadow: var(--box-shadow);
-  width: 100%;
-  max-width: 500px;
-  display: flex;
-  flex-direction: column;
-}
-
-.card-top {
-  background: var(--orange-600);
-  color: var(--neutral-100);
-  padding: 15px;
-  text-align: center;
-}
-
-.card-top h3 {
-  font-size: 1.4rem;
-  font-weight: var(--font-weight-bold);
-  margin-bottom: 5px;
-}
-
-.card-body {
-  padding: 25px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-}
-
-.pouring-container {
-  width: 100%;
-  height: 120px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
+.pouring-container { display: flex; justify-content: center; width: 100%; }
 .pouring-icon {
-  width: 100px;
-  height: 100px;
-  animation: pour 2s infinite ease-in-out;
+  width: min(35vw, 150px);
+  height: auto;
+  animation: tiltPour 2s infinite ease-in-out;
+  transform-origin: center center;
 }
-
-@keyframes pour {
-  0%, 100% { transform: rotate(0deg); }
-  50% { transform: rotate(15deg); }
+@keyframes tiltPour {
+  0%   { transform: rotate(0deg); }
+  25%  { transform: rotate(45deg); }
+  50%  { transform: rotate(0deg); }
+  75%  { transform: rotate(-45deg); }
+  100% { transform: rotate(0deg); }
 }
 
 .measurements {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  display: flex;
+  justify-content: space-around;
   width: 100%;
+  gap: 2vw;
+  margin: 1vh 0;
 }
-
-.measurement {
-  text-align: center;
-  padding: 15px;
-  background: var(--orange-100);
-  border-radius: 10px;
-}
-
-.measurement-value {
-  font-size: 2.2rem;
-  font-weight: var(--font-weight-bold);
-  color: var(--orange-600);
-  margin-bottom: 5px;
-}
-
-.measurement-label {
-  font-size: 1.1rem;
-  font-weight: var(--font-weight-medium);
-  color: var(--neutral-500);
-}
+.measurement-value { font-size: clamp(1.2rem, 3vw, 2rem); font-weight: var(--font-weight-bold); }
+.measurement-label { font-size: clamp(0.8rem, 2vw, 1rem); opacity: 0.8; }
 
 .progress-container {
   width: 100%;
   background: var(--neutral-300);
-  border-radius: 10px;
-  height: 15px;
+  border-radius: 8px;
   overflow: hidden;
-  margin: 10px 0;
+  height: 1rem;
 }
-
-.progress-bar {
-  height: 100%;
-  background: var(--orange-400);
-  border-radius: 10px;
-  width: 0%;
-  transition: width 0.5s ease;
-}
+.progress-bar { height: 100%; background: var(--orange-400); width: 0; transition: width 0.5s ease; }
 
 .status-message {
-  text-align: center;
-  padding: 10px;
-  background: var(--orange-100);
-  border-radius: 8px;
-  width: 100%;
-}
-
-.status-message p {
-  font-size: 1.1rem;
-  font-weight: var(--font-weight-medium);
-  color: var(--orange-600);
-  margin: 0;
-}
-
-/* ... (mantener el resto de estilos) ... */
-
-/* Página final (Final) */
-.final-page {
-  display: none;
-  width: 500px;
-  background: var(--neutral-100);
-  border-radius: var(--border-radius);
-  overflow: hidden;
-  box-shadow: var(--box-shadow);
-  color: var(--neutral-600);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 10;
-}
-
-.final-header {
-  background: var(--orange-600);
-  color: var(--neutral-100);
-  padding: 15px;
+  margin-top: 1vh;
+  font-size: clamp(0.9rem, 2vw, 1.2rem);
   text-align: center;
 }
 
-.final-header h2 {
-  font-size: 1.8rem;
-  font-weight: var(--font-weight-bold);
-  margin-bottom: 5px;
-}
-
-.final-header p {
-  font-size: 1.2rem;
-  font-weight: var(--font-weight-medium);
-}
-
-.final-content {
-  padding: 20px;
-}
-
-.success-message {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
+/* =========================
+   FINAL PAGE EXTRA
+   ========================= */
+.final-content { max-width: 500px; padding: 1.5rem; gap: 2vh; }
+.success-message { display: flex; flex-direction: column; align-items: center; text-align: center; }
 .success-icon {
-  font-size: 3rem;
+  font-size: clamp(2rem, 6vw, 4rem);
   color: var(--success);
-  margin-bottom: 10px;
+  background-color: #007C5B99;
+  margin-bottom: 0.5rem;
+  aspect-ratio: 1 / 1;
+  height: 70px;
+  max-width: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
 }
-
-.success-message h3 {
-  font-size: 1.4rem;
-  font-weight: var(--font-weight-semibold);
-  color: var(--neutral-600);
-  margin-bottom: 10px;
-}
-
-.summary {
-  background: var(--orange-100);
-  padding: 15px;
-  border-radius: 12px;
-  margin-bottom: 15px;
-}
-
+.summary { width: 100%; margin-top: 1rem; }
 .summary-row {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 12px;
-  font-size: 1.1rem;
+  padding: 24px 12px;
 }
-
-.summary-row .label {
-  font-weight: var(--font-weight-semibold);
-  color: var(--neutral-600);
+.summary-row:nth-child(2) {
+  border-bottom: 1px solid var(--orange-400);
 }
-
-.summary-row .value {
-  font-weight: var(--font-weight-medium);
-  color: var(--orange-600);
+.summary-row:last-child {
+  border-bottom: 1px solid var(--neutral-300);
+  background-color: var(--orange-100);
+  margin: 24px 0;
 }
-
-.summary-total {
-  font-weight: var(--font-weight-bold);
-  font-size: 1.2rem;
-  color: var(--orange-600);
-  border-top: 2px solid var(--orange-300);
-  padding-top: 12px;
-  margin-top: 10px;
-}
-
+.summary-total { font-weight: var(--font-weight-bold); }
 .final-message {
   text-align: center;
+  font-size: clamp(0.9rem, 2vw, 1.2rem);
+  margin-top: 1vh;
 }
 
-.final-message p {
-  font-size: 1.1rem;
-  font-weight: var(--font-weight-medium);
-  color: var(--neutral-600);
+/* =========================
+   RESPONSIVE
+   ========================= */
+@media (max-width: 450px) {
+  .card, .service-card, .final-content { max-width: 85%; }
+  .pouring-icon { width: min(45vw, 120px); }
+}
+@media (orientation: portrait) {
+  .card, .service-card, .final-content { max-width: 70%; margin: auto; }
+}
+@media (orientation: landscape) and (max-height: 500px) {
+  .container, .service-container, .final-content {
+    flex-direction: row;
+    justify-content: space-evenly;
+    gap: 2vw;
+  }
+  .card, .service-card, .final-content { max-width: 45%; }
 }
 
-/* Animaciones */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+/* =========================
+   TRANSICIÓN DE PÁGINAS
+   ========================= */
+.page {
+  opacity: 0;
+  pointer-events: none;
+  display: none;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
-
-.fade-in {
-  animation: fadeIn 1s ease-in;
+.page.active {
+  opacity: 1;
+  pointer-events: auto;
+  display: flex;
+  transform: translateY(0);
 }
