@@ -13,4 +13,4 @@ export DISPLAY=:0
 export XAUTHORITY=/home/infomedia/.Xauthority
 
 # Iniciar la app
-npm start
+npm run electron
