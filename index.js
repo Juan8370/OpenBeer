@@ -7,16 +7,20 @@ import fs from "node:fs";
 
 import cors from 'cors';
 
+const rutaJsonLocal = "./OpenBeer/config/config.json";
+const rutaJsonExterna = "/usr/local/device/services/OpenBeer/config/config.json";
+
 /* ---------- MQTT: solo recepción de payload en bruto ---------- */
 import { startRawMQTT } from './src/mqtt/mqttclient.js';            // ← tu cliente “ligero”
-const { bus } = startRawMQTT('./OpenBeer/config/config.json');        // lee cfg y emite {topic,payload}
+//const { bus } = startRawMQTT(rutaJsonExterna);        // lee cfg y emite {topic,payload} , ruta fuera del proyecto
+const { bus } = startRawMQTT(rutaJsonLocal);        // lee cfg y emite {topic,payload}
 
 
 let config = {};
 
 try {
-  //const rawData = fs.readFileSync("usr/local/device/OpenBeer/config.json", "utf-8"); // Ruta para mantener la configuración fuera del proyecto
-  const rawData = fs.readFileSync("./OpenBeer/config/config.json", "utf-8");
+  //const rawData = fs.readFileSync(rutaJsonExterna, "utf-8"); // Ruta para mantener la configuración fuera del proyecto
+  const rawData = fs.readFileSync(rutaJsonLocal, "utf-8");
   config = JSON.parse(rawData);
   console.log(config.mqtt, config.topics);
   console.log("✅ Configuración cargada correctamente.");
