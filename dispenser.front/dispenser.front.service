@@ -1,5 +1,5 @@
 [Unit]
-Description=Dispenser.front Electron + Express App
+Description=Dispenser.front Node.js + Express App
 After=graphical.target
 
 [Service]
@@ -7,10 +7,8 @@ Type=simple
 User=infomedia
 Environment=NODE_ENV=production
 Environment=PORT=5500
-Environment=DISPLAY=:0
-Environment=XAUTHORITY=/home/infomedia/.Xauthority
 WorkingDirectory=/usr/local/device/nodejs/dispenser.front
-ExecStart=/usr/local/device/services/dispenser.front/aplication.sh
+ExecStart=/usr/bin/node /usr/local/device/nodejs/dispenser.front/index.js
 Restart=always
 
 [Install]
