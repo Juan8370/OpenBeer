@@ -1,4 +1,4 @@
-[Unit]
+  GNU nano 7.2                                     dispenser.front.service                                              [Unit]
 Description=Dispenser.front Node.js App
 After=graphical.target
 
@@ -9,9 +9,9 @@ Environment=NODE_ENV=production
 Environment=PORT=5500
 Environment=DISPLAY=:0
 Environment=XAUTHORITY=/home/infomedia/.Xauthority
-WorkingDirectory=/usr/local/device/nodejs/dispenser.front
+WorkingDirectory=/usr/local/device/services/dispenser.front
 ExecStartPre=/usr/bin/xrandr --output HDMI-1 --rotate left
-ExecStart=/usr/bin/node /usr/local/device/nodejs/dispenser.front/index.js
+ExecStart=/usr/local/device/services/dispenser.front/aplication.sh
 Restart=always
 
 [Install]
